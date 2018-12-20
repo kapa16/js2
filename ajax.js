@@ -5,40 +5,29 @@
  * @param {string} url - строка адреса для запроса
  * @constructor
  */
-function AjaxRequest(url) {
-  this.fileUrl = url;
-  this.request = new XMLHttpRequest();
-  this.callback = null;
+function ajaxRequest(url) {
+  return new Promise(function(resolve, reject) {
+    const fileUrl = url;
+    const request = new XMLHttpRequest();
 
-  /**
-   * Проверяет статус запроса к сверверу и вызывет функцию callback
-   */
-  this.checkRequestStatus = function () {
-    if (this.request.readyState !== 4) {
-      return;
-    }
+    request.responseType = "json";
+    request.open('GET', fileUrl, true);
+    /**
+     * Проверяет статус запроса к сверверу и вызывет функцию callback
+     */
+    request.onload = function () {
+      if (request.readyState !== 4) {
+        return;
+      }
 
-    if (this.request.status !== 200) {
-      this.callback(true, 'Не удалось загрузить данные');
-    }
+      if (request.status !== 200) {
+        reject(new Error(request.statusText));
+      }
 
-    this.callback(false, this.request.responseText);
-  }.bind(this);
+      resolve(request.response);
+    }.bind(this);
+    request.send();
+
+
+  })
 }
-
-/**
- * Отправляет GET запрос на сервер
- */
-AjaxRequest.prototype.sendGetRequest = function() {
-  this.request.addEventListener('load', this.checkRequestStatus);
-  this.request.open('GET', this.fileUrl, true);
-  this.request.send();
-};
-
-/**
- * Устанавливает функцию для вызова callback
- * @param {function} callbackUserFunction - функция для возврата данных
- */
-AjaxRequest.prototype.setCallback = function(callbackUserFunction) {
-  this.callback = callbackUserFunction;
-};
