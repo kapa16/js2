@@ -1,15 +1,14 @@
 class Menu {
-  constructor(id, className, parentBlock, items) {
+  constructor(id, className, items) {
     this.id = id;
     this.className = className;
     this.items = items;
-    this.parentBlock = parentBlock;
   }
 
   getMarkupHtml() {
     let result = `<ul class="${this.className}" id="${this.id}">`;
     for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i] instanceof MenuItem) {
+      if (this.items[i] instanceof MenuItem || this.items[i] instanceof SubMenu) {
         result += this.items[i].render();
       }
     }
@@ -17,8 +16,8 @@ class Menu {
     return result;
   }
 
-  render() {
-    this.parentBlock.innerHTML = this.getMarkupHtml();
+  render(parentBlock) {
+    parentBlock.innerHTML = this.getMarkupHtml();
   }
 
   remove() {
@@ -26,11 +25,11 @@ class Menu {
     menuParent.removeChild(this.getMenuEl());
   }
 
-  toggleMenu() {
+  toggleMenu(parentBlock) {
     if (this.getMenuEl()) {
       this.remove();
     } else {
-      this.render();
+      this.render(parentBlock);
     }
   }
 

@@ -9,26 +9,31 @@
 <div id="menu"></div>
 <script src="MenuItem.js"></script>
 <script src="Menu.js"></script>
+<script src="SubMenu.js"></script>
 <script>
   window.onload = () => {
     // DOM ready
     let block = document.getElementById('menu');
 
-    let menu = new Menu('my', 'my', block, [
+    let menu = new Menu('my', 'my', [
       new MenuItem('/', 'Home'),
       new MenuItem('/about', 'About'),
       new MenuItem('/policy', 'Policy'),
-      // new SubMenu(..., [
-      //     new MenuItem('/about', 'About'),
-      //     new MenuItem('/policy', 'Policy'),
-      // ])
+      new SubMenu('sub', 'sub', [
+        new MenuItem('/about', 'About'),
+            new SubMenu('sub', 'sub', [
+              new MenuItem('/about', 'About'),
+              new MenuItem('/policy', 'Policy'),
+            ]),
+        new MenuItem('/policy', 'Policy'),
+      ]),
       new MenuItem('/blog', 'Blog')
     ]);
 
-    menu.render();
+    menu.render(block);
 
     const buttonRemoveMenu = document.querySelector('#toggleMenu');
-    buttonRemoveMenu.addEventListener('click', () => menu.toggleMenu());
+    buttonRemoveMenu.addEventListener('click', () => menu.toggleMenu(block));
   }
 </script>
 </body>
