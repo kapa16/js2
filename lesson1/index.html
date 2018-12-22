@@ -5,27 +5,31 @@
     <title>Title</title>
 </head>
 <body>
+<button type="button" id="toggleMenu">Спрятать / показать меню</button>
 <div id="menu"></div>
 <script src="MenuItem.js"></script>
 <script src="Menu.js"></script>
 <script>
-    window.onload = () => {
-        // DOM ready
-        let block = document.getElementById('menu');
+  window.onload = () => {
+    // DOM ready
+    let block = document.getElementById('menu');
 
-        let menu = new Menu('my', 'my', [
-            new MenuItem('/', 'Home'),
-            new MenuItem('/about', 'About'),
-            new MenuItem('/policy', 'Policy'),
-            // new SubMenu(..., [
-            //     new MenuItem('/about', 'About'),
-            //     new MenuItem('/policy', 'Policy'),
-            // ])
-            new MenuItem('/blog', 'Blog')
-        ]);
+    let menu = new Menu('my', 'my', block, [
+      new MenuItem('/', 'Home'),
+      new MenuItem('/about', 'About'),
+      new MenuItem('/policy', 'Policy'),
+      // new SubMenu(..., [
+      //     new MenuItem('/about', 'About'),
+      //     new MenuItem('/policy', 'Policy'),
+      // ])
+      new MenuItem('/blog', 'Blog')
+    ]);
 
-        block.innerHTML = menu.render();
-    }
+    menu.render();
+
+    const buttonRemoveMenu = document.querySelector('#toggleMenu');
+    buttonRemoveMenu.addEventListener('click', () => menu.toggleMenu());
+  }
 </script>
 </body>
 </html>
