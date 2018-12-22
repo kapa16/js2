@@ -5,59 +5,42 @@
     <title>Гамбургер</title>
 </head>
 <body>
-<form action="#" name="hamburger">
-    <h3>Создай свой гамбургер</h3>
-    <h5>Размер</h5>
-    <label>Большой
-        <input type="radio" name="size" value="large" checked>
-    </label>
-    <label>Маленький
-    <input type="radio" name="size" value="small">
-    </label>
 
-    <h5>Начинка</h5>
-    <label>Сыр
-    <input type="radio" name="stuffing" value="cheese" checked>
-    </label>
-    <label>Салат
-    <input type="radio" name="stuffing" value="salad">
-    </label>
-    <label>Картофель
-    <input type="radio" name="stuffing" value="potato">
-    </label>
+<div class="formHamburger"></div>
 
-    <h5>Дополнительно</h5>
-    <label for="sizeSpice">Приправа</label>
-    <input type="checkbox" id="sizeSpice">
-    <label for="sizeMayo">Майонез</label>
-    <input type="checkbox" id="sizeMayo">
+<hr>
+<p>Цена: <span id="price"></span></p>
+<p>Калорийность: <span id="calories"></span></p>
 
-    <p>Цена: <span id="price"></span></p>
-    <p>Калорийность: <span id="calories"></span></p>
-</form>
-
+<script src="settingsHamburger.js"></script>
 <script src="Hamburger.js"></script>
+<script src="Form.js"></script>
 
 <script>
-  const form = document.forms.hamburger;
 
-  function getValueRadioElements(elements) {
-    for (let i = 0; i < elements.length; i++) {
-      if (elements[i].checked) {
-        return elements[i].value;
-      }
+  const containerEl = document.querySelector('.formHamburger');
+  const formHam = new Form(settingsHamburger);
+  formHam.render(containerEl, 'hamburger');
+
+  hamburger = new Hamburger(settingsHamburger);
+
+  const onFormChange = function() {
+    for (const key in settingsHamburger) {
+      hamburger[key] = formHam.getValue(key, settingsHamburger[key].multiCheck);
     }
-  }
 
-  const size = getValueRadioElements(form.elements.size);
-  const stuffing = getValueRadioElements(form.elements.stuffing);
-  hamburger = new Hamburger(size, stuffing);
+    const priceEl = document.querySelector('#price');
+    priceEl.textContent = hamburger.calculatePrice();
 
-  const priceEl = document.querySelector('#price');
-  priceEl.textContent = hamburger.calculatePrice();
+    const caloriesEl = document.querySelector('#calories');
+    caloriesEl.textContent = hamburger.calculateCalories();
+  };
 
-  const caloriesEl = document.querySelector('#calories');
-  caloriesEl.textContent = hamburger.calculatecalories();
+  formHam.formEl.addEventListener('change', () => onFormChange());
+
+  onFormChange();
+
+
 </script>
 </body>
 </html>
