@@ -61,7 +61,7 @@ class FormHamburger {
    * @param {string} name - имя input
    * @param {string} value - значение input
    * @param {boolean} checked - выбран
-   * @param {string} text - название для отображения
+   * @param {object} property - свойство
    * @returns {HTMLElement} - элемент формы
    * @private
    */
