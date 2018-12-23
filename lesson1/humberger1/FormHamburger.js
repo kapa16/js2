@@ -1,7 +1,7 @@
 /**
  * класс для создания формы и получения значений полей
  */
-class Form {
+class FormHamburger {
   /**
    * Конструктор формы
    * @param {Object} settings - настройки для работы
@@ -41,6 +41,14 @@ class Form {
         checked = false;
       }
     }
+
+    this.formEl.appendChild(document.createElement('br'));
+
+    const buttonEl = document.createElement('button');
+    buttonEl.type = 'submit';
+    buttonEl.textContent = 'Купить';
+    this.formEl.appendChild(buttonEl);
+
   }
 
   /**

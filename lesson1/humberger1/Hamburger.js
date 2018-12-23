@@ -4,10 +4,11 @@
 class Hamburger {
   constructor(settings) {
     this.settings = settings;
+    this.parameters = {};
   }
 
   setValue(parameter, value) {
-    this[parameter] = value;
+    this.parameters[parameter] = value;
   }
 
   /**
@@ -18,15 +19,15 @@ class Hamburger {
    */
   _calculate(value) {
     let sum = 0;
-    for (const setting in this.settings) {
-      const currentSetting = settingsHamburger[setting];
-      const property = this[setting];
-      if (Array.isArray(property)) {
-        property.forEach(prop => {
-          sum += currentSetting[prop][value];
+    for (const settingName in this.parameters) {
+      const parameter = this.parameters[settingName];
+      const setting = this.settings[settingName];
+      if (Array.isArray(parameter)) {
+        parameter.forEach(prop => {
+          sum += setting[prop][value];
         });
       } else {
-        sum += currentSetting[property][value];
+        sum += setting[parameter][value];
       }
     }
     return sum;
@@ -48,7 +49,25 @@ class Hamburger {
     return this._calculate('calories');
   }
 
-  getЗarameters() {
-
+  getParameter(settingName) {
+    const parameter = this.parameters[settingName];
+    if (Array.isArray(parameter)) {
+      parameter.forEach(prop => {
+        return this.getSetting(settingName, prop)[value];
+      });
+    } else {
+      return this.getSetting(settingName, parameter)[value];
+    }
   }
+
+  toString() {
+    let hamburgerString = '';
+    for (const parametersKey in this.parameters) {
+      const property = this.settings[parametersKey];
+      const value = property[this.parameters[parametersKey]];
+      hamburgerString += `${property.title}: ${value.title}`;
+    }
+    return hamburgerString;
+  }
+
 }
