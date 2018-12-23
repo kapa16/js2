@@ -7,6 +7,11 @@ class Hamburger {
     this.parameters = {};
   }
 
+  /**
+   * Устанавливает параметры гамбургера
+   * @param {string} parameter - имя устанавливаемого параметра
+   * @param {*} value - значение устанавливаемого параметра
+   */
   setValue(parameter, value) {
     this.parameters[parameter] = value;
   }

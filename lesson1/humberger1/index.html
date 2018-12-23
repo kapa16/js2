@@ -30,6 +30,9 @@
 
   hamburger = new Hamburger(settingsHamburger);
 
+  /**
+   * Обработчик изменений формы
+   */
   const onFormChange = function() {
     for (const key in settingsHamburger) {
       hamburger.setValue(key, formHam.getValue(key, settingsHamburger[key].multiCheck));

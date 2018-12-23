@@ -25,6 +25,10 @@ class Menu {
     menuParent.removeChild(this.getMenuEl());
   }
 
+  /**
+   * Показывает / скрывает блок меню
+   * @param {Element} parentBlock - сонтейнер для меню
+   */
   toggleMenu(parentBlock) {
     if (this.getMenuEl()) {
       this.remove();
@@ -33,6 +37,10 @@ class Menu {
     }
   }
 
+  /**
+   * Провеяет существование элемента меню
+   * @returns {Element}
+   */
   getMenuEl() {
     return document.querySelector(`#${this.id}`);
   }
