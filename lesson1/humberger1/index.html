@@ -26,7 +26,7 @@
 
   const onFormChange = function() {
     for (const key in settingsHamburger) {
-      hamburger[key] = formHam.getValue(key, settingsHamburger[key].multiCheck);
+      hamburger.setValue(key, formHam.getValue(key, settingsHamburger[key].multiCheck));
     }
 
     const priceEl = document.querySelector('#price');

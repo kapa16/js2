@@ -6,6 +6,10 @@ class Hamburger {
     this.settings = settings;
   }
 
+  setValue(parameter, value) {
+    this[parameter] = value;
+  }
+
   /**
    * рассчитывает значение
    * @param {string} value - название рассчитываемого значения
@@ -42,5 +46,9 @@ class Hamburger {
    */
   calculateCalories() {
     return this._calculate('calories');
+  }
+
+  getЗarameters() {
+
   }
 }
