@@ -37,18 +37,10 @@ class FormHamburger {
         if (type === 'checkbox') {
           checked = false;
         }
-        this.formEl.appendChild(this._createLabelInput(type, settingsKey, key, checked, propSettings[key].title));
+        this.formEl.appendChild(this._createLabelInput(type, settingsKey, key, checked, propSettings[key]));
         checked = false;
       }
     }
-
-    this.formEl.appendChild(document.createElement('br'));
-
-    const buttonEl = document.createElement('button');
-    buttonEl.type = 'submit';
-    buttonEl.textContent = 'Купить';
-    this.formEl.appendChild(buttonEl);
-
   }
 
   /**
@@ -73,9 +65,9 @@ class FormHamburger {
    * @returns {HTMLElement} - элемент формы
    * @private
    */
-  _createLabelInput(type, name, value, checked, text){
+  _createLabelInput(type, name, value, checked, property){
     const labelEl = document.createElement('label');
-    labelEl.textContent = text;
+    labelEl.textContent = `${property.title} (${property.price} руб., ${property.calories} кал) `;
 
     const inputEl = document.createElement('input');
     inputEl.type = type;

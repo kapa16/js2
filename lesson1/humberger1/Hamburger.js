@@ -49,25 +49,4 @@ class Hamburger {
     return this._calculate('calories');
   }
 
-  getParameter(settingName) {
-    const parameter = this.parameters[settingName];
-    if (Array.isArray(parameter)) {
-      parameter.forEach(prop => {
-        return this.getSetting(settingName, prop)[value];
-      });
-    } else {
-      return this.getSetting(settingName, parameter)[value];
-    }
-  }
-
-  toString() {
-    let hamburgerString = '';
-    for (const parametersKey in this.parameters) {
-      const property = this.settings[parametersKey];
-      const value = property[this.parameters[parametersKey]];
-      hamburgerString += `${property.title}: ${value.title}`;
-    }
-    return hamburgerString;
-  }
-
 }

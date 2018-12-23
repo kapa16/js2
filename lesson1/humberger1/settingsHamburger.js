@@ -18,11 +18,5 @@ const settingsHamburger = {
     title: 'Дополнительно',
     mayo: {price: 20, calories: 5, title: 'Майонез'},
     spice: {price: 15, calories: 0, title: 'Приправа'}
-  },
-  bred: {
-    multiCheck: true,
-    title: 'Хлеб',
-    bred1: {price: 20, calories: 5, title: 'Хлеб 1'},
-    bred2: {price: 15, calories: 0, title: 'Хлеб 2'}
-  },
+  }
 };

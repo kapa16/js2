@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
     <title>Гамбургер</title>
 </head>
 <body>
 
+<h2>Собери свой гамбургер</h2>
+
 <div class="formHamburger"></div>
 
 <hr>
-<h2>Ваш заказ</h2>
-<div class="basket"></div>
+<h2>Ваш гамбургер</h2>
 <p>Сумма: <span id="price"></span></p>
 <p>Калорийность: <span id="calories"></span></p>
 
@@ -19,7 +21,6 @@
 <script src="settingsHamburger.js"></script>
 <script src="Hamburger.js"></script>
 <script src="FormHamburger.js"></script>
-<script src="Basket.js"></script>
 
 <script>
 
@@ -41,14 +42,7 @@
     caloriesEl.textContent = hamburger.calculateCalories();
   };
 
-  const basket = new Basket();
-  const onFormSubmit = function(){
-    basket.addProduct(hamburger);
-    basket.render(document.querySelector('.basket'));
-  };
-
   formHam.formEl.addEventListener('change', () => onFormChange());
-  formHam.formEl.addEventListener('submit', () => onFormSubmit());
 
   onFormChange();
 
