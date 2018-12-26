@@ -2,11 +2,13 @@
  * Класс подкменю
  */
 class SubMenu extends Menu {
-  constructor(id, className, parentBlock, items) {
+  constructor(href, title, id, className, parentBlock, items) {
     super(id, className, parentBlock, items);
+    this.href = href;
+    this.title = title;
   }
 
   render() {
-    return this.getMarkupHtml();
+    return `<li><a href="${this.href}">${this.title}${this.getMarkupHtml()}</a></li>`;
   }
 }
