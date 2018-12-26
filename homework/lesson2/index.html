@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <title>Title</title>
 </head>
 <body>
@@ -15,21 +16,28 @@
     // DOM ready
     let block = document.getElementById('menu');
 
-    let menu = new Menu('my', 'my', [
-      new MenuItem('/', 'Home'),
-      new MenuItem('/about', 'About'),
-      new MenuItem('/policy', 'Policy'),
-      new SubMenu('/sub', 'sub menu', 'sub', 'sub', [
-        new MenuItem('/about', 'About'),
-        new MenuItem('/policy', 'Policy'),
+    let menu = new Menu('main-menu', 'menu', [
+      new MenuItem('/', 'Home', 'menu__link'),
+      new MenuItem('/about', 'About', 'menu__link'),
+      new MenuItem('/policy', 'Policy', 'menu__link'),
+      new SubMenu('/#', 'MAN', 'menu__sub', 'menu__sub', [
+        new MenuItem('/about', 'About', 'menu__link'),
+        new MenuItem('/policy', 'Policy', 'menu__link'),
+        new MenuItem('/policy', 'Policy', 'menu__link'),
       ]),
-      new MenuItem('/blog', 'Blog')
+      new SubMenu('/#', 'WOMAN', 'menu__sub', 'menu__sub', [
+        new MenuItem('/about', 'About', 'menu__link'),
+        new MenuItem('/policy', 'Policy', 'menu__link'),
+        new MenuItem('/policy', 'Policy', 'menu__link'),
+      ]),      new MenuItem('/blog', 'Blog', 'menu__link')
     ]);
 
     menu.render(block);
 
     const buttonRemoveMenu = document.querySelector('#toggleMenu');
     buttonRemoveMenu.addEventListener('click', () => menu.toggleMenu(block));
+
+
   }
 </script>
 </body>

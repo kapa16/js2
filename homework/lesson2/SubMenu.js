@@ -9,6 +9,8 @@ class SubMenu extends Menu {
   }
 
   render() {
-    return `<li><a href="${this.href}">${this.title}${this.getMarkupHtml()}</a></li>`;
+    let result = `<li class="${this._classSubMenuList}">${this.title}${this.getMarkupHtml()}</li>`;
+    console.log(result);
+    return result;
   }
 }

@@ -1,9 +1,11 @@
 class MenuItem {
-    constructor(href, title){
-        this.href = href;
-        this.title = title;
-    }
-    render(){
-        return `<li><a href="${this.href}">${this.title}</a></li>`
-    }
+  constructor(href, title, className) {
+    this.href = href;
+    this.title = title;
+    this.className = className;
+  }
+
+  render() {
+    return `<li><a href="${this.href}" class="${this.className}">${this.title}</a></li>`
+  }
 }
