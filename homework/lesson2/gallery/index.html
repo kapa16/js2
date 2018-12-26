@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Gallery</title>
+</head>
+<body>
+<div id="gallery"></div>
+
+<script src="Gallery.js"></script>
+<script>
+
+    block = document.querySelector('#gallery');
+
+    const gallery = new Gallery();
+    gallery.createGallery('gallery.json', block);
+
+
+</script>
+</body>
+</html>
