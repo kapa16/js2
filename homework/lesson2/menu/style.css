@@ -12,23 +12,30 @@ li {
     display: flex;
 }
 
-.menu a {
+.menu a,
+.submenu_list {
     display: block;
     text-decoration: none;
-    color: dimgrey;
+    color: white;
     padding: 5px 20px;
+    background: dimgrey;
+    border: 1px solid lightgray;
+    text-transform: uppercase;
 }
 
-.submenu_list {
+.menu a:hover,
+.submenu_list:hover {
+    cursor: pointer;
+    background: lightgray;
     color: dimgrey;
-    padding: 5px 20px;
+
 }
 
 .menu__sub {
     display: none;
     position: absolute;
-    top: 20px;
-    left: 0px;
+    top: 28px;
+    left: 0;
 }
 
 li .menu__sub_show {

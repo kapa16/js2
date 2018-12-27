@@ -4,6 +4,7 @@ class Gallery {
       galleryWrapperClass: 'gallery__wrapper',
       galleryImageClass: 'gallery__image',
       fullSizeImageWindowClass: 'gallery__modal-windows',
+      fullSizeImageScreenClass: 'gallery__modal-screen',
       fullSizeImageClass: 'gallery__full-image',
       fullSizeImageCloseButtonClass: 'gallery__close-button',
       fullSizeImageCloseButtonSrc: 'img/gallery/close.png',
@@ -24,9 +25,8 @@ class Gallery {
 
   render() {
     this.galleryWrapperEl.classList.add(this.settings.galleryWrapperClass);
-
     this.images.forEach(elem => this._createElement(elem));
-  this.galleryContainerEl.appendChild(this.galleryWrapperEl);
+    this.galleryContainerEl.appendChild(this.galleryWrapperEl);
   }
 
   _createElement(elem) {
@@ -42,10 +42,10 @@ class Gallery {
     imageEl.dataset.srcMax = elem.srcMax;
     imageEl.classList.add(this.settings.galleryImageClass);
     return imageEl;
-}
+  }
 
   setImages(images) {
-    if (!Array.isArray(images)){
+    if (!Array.isArray(images)) {
       return;
     }
     this.images = images.slice();
@@ -74,17 +74,19 @@ class Gallery {
   }
 
   _onClickCLoseButton() {
-    document.querySelector(this.settings.fullSizeImageWindowClass).remove();
+    document.querySelector(`.${this.settings.fullSizeImageWindowClass}`).remove();
   }
 
   _showFullSizeImage(elem) {
     const modalWindowEl = this._createModalWindow();
+    const modalScreenEl = this._createModalScreen();
     const closeBtnEl = this._createCloseBtn();
     const fullSizeImageEl = this._createFullSizeImage(elem);
 
-    closeBtnEl.addEventListener('click', () => this._onClickCLoseButton);
+    closeBtnEl.addEventListener('click', () => this._onClickCLoseButton());
 
     this.galleryContainerEl.appendChild(modalWindowEl);
+    modalWindowEl.appendChild(modalScreenEl);
     modalWindowEl.appendChild(closeBtnEl);
     modalWindowEl.appendChild(fullSizeImageEl);
   }
@@ -92,6 +94,12 @@ class Gallery {
   _createModalWindow() {
     const modalWindowEl = document.createElement('div');
     modalWindowEl.classList.add(this.settings.fullSizeImageWindowClass);
+    return modalWindowEl;
+  }
+
+  _createModalScreen() {
+    const modalWindowEl = document.createElement('div');
+    modalWindowEl.classList.add(this.settings.fullSizeImageScreenClass);
     return modalWindowEl;
   }
 
@@ -105,8 +113,9 @@ class Gallery {
 
   _createFullSizeImage(elem) {
     const fullSizeImageEl = new Image();
-    fullSizeImageEl.src = elem.srcMax;
-    fullSizeImageEl.alt = elem.alt;
+    fullSizeImageEl.classList.add(this.settings.fullSizeImageClass);
+    fullSizeImageEl.src = elem.dataset.srcMax;
+    fullSizeImageEl.alt = elem.dataset.alt;
     return fullSizeImageEl;
   }
 }
