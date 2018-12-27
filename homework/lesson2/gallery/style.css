@@ -11,3 +11,27 @@
 .gallery__image {
     cursor: pointer;
 }
+
+.gallery__modal-windows {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: black;
+    opacity: 0.4;
+}
+
+.gallery__full-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+}
+
+.gallery__close-button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+}

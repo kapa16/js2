@@ -1,10 +1,16 @@
 class Gallery {
-  constructor() {
+  constructor(galleryContainerEl) {
     this.settings = {
       galleryWrapperClass: 'gallery__wrapper',
       galleryImageClass: 'gallery__image',
+      fullSizeImageWindowClass: 'gallery__modal-windows',
+      fullSizeImageClass: 'gallery__full-image',
+      fullSizeImageCloseButtonClass: 'gallery__close-button',
+      fullSizeImageCloseButtonSrc: 'img/gallery/close.png',
+
     };
     this.images = [];
+    this.galleryContainerEl = galleryContainerEl;
     this.galleryWrapperEl = document.createElement('div');
   }
 
@@ -16,11 +22,11 @@ class Gallery {
     Object.assign(this.settings, settings);
   }
 
-  render(parentEl) {
+  render() {
     this.galleryWrapperEl.classList.add(this.settings.galleryWrapperClass);
 
     this.images.forEach(elem => this._createElement(elem));
-    parentEl.appendChild(this.galleryWrapperEl);
+  this.galleryContainerEl.appendChild(this.galleryWrapperEl);
   }
 
   _createElement(elem) {
@@ -45,31 +51,62 @@ class Gallery {
     this.images = images.slice();
   }
 
-  createGallery(fileName, parentEl) {
+  createGallery(fileName) {
     fetch(fileName)
       .then(response => response.json())
       .then(imagesJson => {
         this.setImages(imagesJson);
-        this.render(parentEl);
-        this._addEvent(parentEl);
+        this.render(this.galleryContainerEl);
+        this._addEventOpenFullImage(this.galleryContainerEl);
       });
   }
 
-  _addEvent(parentEl) {
-    parentEl.addEventListener('click', evt => this._onClickImagePreview(evt));
+  _addEventOpenFullImage() {
+    this.galleryWrapperEl.addEventListener('click', evt => this._onClickImagePreview(evt));
   }
 
   _onClickImagePreview(evt) {
     const elementClick = evt.target;
-    if (elementClick.tagName !== 'img') {
+    if (elementClick.tagName !== 'IMG') {
       return;
     }
-    this._showBigImage(elementClick);
+    this._showFullSizeImage(elementClick);
   }
 
-  _showBigImage(elem) {
-    const modelEl = this._createModalWondow();
-    const closeBtn = this._createCloseBtn();
+  _onClickCLoseButton() {
+    document.querySelector(this.settings.fullSizeImageWindowClass).remove();
+  }
 
+  _showFullSizeImage(elem) {
+    const modalWindowEl = this._createModalWindow();
+    const closeBtnEl = this._createCloseBtn();
+    const fullSizeImageEl = this._createFullSizeImage(elem);
+
+    closeBtnEl.addEventListener('click', () => this._onClickCLoseButton);
+
+    this.galleryContainerEl.appendChild(modalWindowEl);
+    modalWindowEl.appendChild(closeBtnEl);
+    modalWindowEl.appendChild(fullSizeImageEl);
+  }
+
+  _createModalWindow() {
+    const modalWindowEl = document.createElement('div');
+    modalWindowEl.classList.add(this.settings.fullSizeImageWindowClass);
+    return modalWindowEl;
+  }
+
+  _createCloseBtn() {
+    const closeBtnEl = new Image();
+    closeBtnEl.classList.add(this.settings.fullSizeImageCloseButtonClass);
+    closeBtnEl.src = this.settings.fullSizeImageCloseButtonSrc;
+    closeBtnEl.alt = 'close button';
+    return closeBtnEl;
+  }
+
+  _createFullSizeImage(elem) {
+    const fullSizeImageEl = new Image();
+    fullSizeImageEl.src = elem.srcMax;
+    fullSizeImageEl.alt = elem.alt;
+    return fullSizeImageEl;
   }
 }
