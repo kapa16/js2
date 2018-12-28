@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>AJAX</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="btn" id="success">success</div>
+    <div class="btn" id="error">error</div>
+</div>
+<div class="message"></div>
+
+
+<script src="AjaxRequest.js"></script>
+<script>
+
+    const block = document.querySelector('.container');
+    const blockMessage = document.querySelector('.message');
+    const ajaxRequest = new AjaxRequest(blockMessage);
+
+    block.addEventListener('click', evt => ajaxRequest.onClickButton(evt));
+</script>
+
+</body>
+</html>

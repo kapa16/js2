@@ -1,0 +1,42 @@
+#gallery {
+    max-width: 1400px;
+    margin: 100px auto 0;
+}
+
+.gallery__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gallery__image {
+    cursor: pointer;
+}
+
+.gallery__modal-windows {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.gallery__full-image {
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+}
+
+.gallery__close-button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+}

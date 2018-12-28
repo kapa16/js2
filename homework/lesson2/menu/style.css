@@ -1,0 +1,43 @@
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu a,
+.submenu_list {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background: dimgrey;
+    border: 1px solid lightgray;
+    text-transform: uppercase;
+}
+
+.menu a:hover,
+.submenu_list:hover {
+    cursor: pointer;
+    background: lightgray;
+    color: dimgrey;
+
+}
+
+.menu__sub {
+    display: none;
+    position: absolute;
+    top: 28px;
+    left: 0;
+}
+
+li .menu__sub_show {
+    display: block;
+}
