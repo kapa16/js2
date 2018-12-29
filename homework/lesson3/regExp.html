@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>регулярные выражения</title>
+</head>
+<body>
+
+<form action="#" method="get" name="myForm">
+    <label for="file">Выберите файл</label>
+    <input type="file" name="file" id="file" accept=".txt">
+</form>
+<div class="wrapper">
+    <div>
+        <h3>Изначальный текст</h3>
+        <pre class="firstText"></pre>       
+    </div>
+    <div>
+        <h3>Замена всех одинарных кавычек</h3>
+        <pre class="secondText"></pre>
+    </div>
+    <div>
+        <h3>Замена нужных одинарных кавычек</h3>
+        <pre class="thirdText"></pre>
+    </div>
+</div>
+
+
+
+<script src="regExp.js"></script>
+<script>
+  "use strict";
+
+  const formEl = document.forms.myForm;
+  const inputEl = formEl.elements.file;
+
+  const regExp = new RegExp(inputEl, 'firstText', 'secondText', 'thirdText');
+
+  inputEl.addEventListener('change', () => regExp.formDataProcessing());
+</script>
+</body>
+</html>
