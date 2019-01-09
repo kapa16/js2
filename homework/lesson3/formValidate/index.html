@@ -20,7 +20,7 @@
         <label for="name">Имя</label>
         <input type="text" class="form-control" id="name" placeholder="Введите имя">
         <div class="invalid-feedback">
-            Please provide a valid zip.
+            Имя должно содержать только буквы
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         <label for="phone">Телефон</label>
         <input type="text" class="form-control" id="phone" placeholder="+7(000)000-0000">
         <div class="invalid-feedback">
-            Please provide a valid zip.
+            Телефон должен соответсвовать шаблону +7(000)000-0000
         </div>
     </div>
 
@@ -38,7 +38,7 @@
         <label for="email">Email адрес</label>
         <input type="text" class="form-control" id="email" placeholder="mymail@domain.ru">
         <div class="invalid-feedback">
-            Please provide a valid zip.
+            Некорректно введен E-mail адрес
         </div>
     </div>
     <div class="form-group col-md-4 mb-3">
@@ -47,7 +47,7 @@
     </div>
 
     <div class="w-100"></div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Отправить</button>
 </form>
 
 <!-- Optional JavaScript -->
@@ -59,8 +59,10 @@
 <script src="validateForm.js"></script>
 
 <script>
-    const validateForm = new ValidateForm('valid');
-    document.forms.valid.addEventListener('submit', validateForm.validateFormData());
+  "use strict";
+
+  const validateForm = new ValidateForm('valid');
+  document.forms.valid.addEventListener('submit', evt => validateForm.validateFormData(evt));
 </script>
 </body>
 </html>
