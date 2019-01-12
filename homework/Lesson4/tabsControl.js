@@ -4,8 +4,9 @@ class TabsControl {
       tabsWrapperClass: 'tabs__wrapper',
       tabsControlClass: 'tabs__control',
       tabsContentClass: 'tabs__content'
-    }
+    };
     Object.assign(this.settings, settings);
+    this.activeTab = Element;
   }
 
 }

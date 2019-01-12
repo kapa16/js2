@@ -1,0 +1,18 @@
+.tabs {
+  display: flex;
+}
+.tabs__control {
+  padding: 10px;
+  border: 1px solid green;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.tabs__control:hover {
+  background: green;
+  color: white;
+}
+.tabs__content {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */
