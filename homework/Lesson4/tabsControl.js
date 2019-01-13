@@ -3,10 +3,19 @@ class TabsControl {
     this.settings = {
       tabsWrapperClass: 'tabs__wrapper',
       tabsControlClass: 'tabs__control',
-      tabsContentClass: 'tabs__content'
+      tabsContentClass: 'tabs__content',
+      activeTabClass: 'tabs__active'
     };
     Object.assign(this.settings, settings);
-    this.activeTab = Element;
+    this._init();
+  }
+
+  _init() {
+    $(this.settings.tabsControlClass).on('click', () => this._onControlClick());
+  }
+
+  _onControlClick() {
+
   }
 
 }
