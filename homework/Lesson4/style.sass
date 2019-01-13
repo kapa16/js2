@@ -1,15 +1,37 @@
 .tabs
+  max-width: 800px
+  margin: 0 auto
   display: flex
+  position: relative
   &__wrapper
   &__control
-    padding: 10px
-    border: 1px solid green
-    border-top-left-radius: 5px
-    border-top-right-radius: 5px
+    position: relative
+    z-index: 10
+    padding: 10px 20px
+    margin-right: 1px
+    border: 2px solid green
+    border-bottom: none
+    border-top-left-radius: 7px
+    border-top-right-radius: 7px
+    background: green
+    color: white
     &:hover
-      background: green
-      color: white
+      cursor: pointer
+      background: rgba(0, 128, 0, 0.5)
   &__content
     display: none
+    position: absolute
+    border: 2px solid green
+    border-top-right-radius: 7px
+    border-bottom-right-radius: 7px
+    border-bottom-left-radius: 7px
+    top: 38px
+    left: 0
+    padding: 5px
+  &__active .tabs__content
+    display: block
+  &__active .tabs__control
+    background: white
+    color: green
 
 

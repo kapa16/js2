@@ -1,21 +1,26 @@
+"use strict";
+
 class TabsControl {
   constructor(settings) {
     this.settings = {
-      tabsWrapperClass: 'tabs__wrapper',
+      tabsClass: 'tabs',
       tabsControlClass: 'tabs__control',
-      tabsContentClass: 'tabs__content',
       activeTabClass: 'tabs__active'
     };
     Object.assign(this.settings, settings);
-    this._init();
+    this._addEventListeners();
   }
 
-  _init() {
-    $(this.settings.tabsControlClass).on('click', () => this._onControlClick());
+  _addEventListeners() {
+    $(`.${this.settings.tabsClass} .${this.settings.tabsControlClass}`)
+      .on('click', (evt) => this._onControlClick(evt));
   }
 
-  _onControlClick() {
+  _onControlClick(evt) {
+    const currentEl = evt.currentTarget;
+    $(`.${this.settings.tabsClass} .${this.settings.activeTabClass}`)
+      .removeClass(this.settings.activeTabClass);
 
+    $(currentEl).parent().addClass(this.settings.activeTabClass);
   }
-
 }
