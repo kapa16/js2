@@ -41,7 +41,7 @@ class ValidateForm {
     const formEl = this.formEl.querySelector(`#${id}`);
     const strValue = formEl.value;
     let elementCorrect = strValue.length !== 0;
-    elementCorrect = elementCorrect && strValue.replace(pattern, '').length === 0;
+    elementCorrect = elementCorrect && pattern.test(strValue);
     if (!elementCorrect) {
       this._showValidInfo(formEl, 'is-invalid', 'is-valid');
     } else {
@@ -56,7 +56,7 @@ class ValidateForm {
    * @private
    */
   _isPhoneCorrect() {
-    return this._isElementCorrect('phone', /\+7\(\d{3}\)\d{3}-\d{4}/);
+    return this._isElementCorrect('phone', /^\+7\(\d{3}\)\d{3}-\d{4}$/);
   }
 
   /**
@@ -65,7 +65,7 @@ class ValidateForm {
    * @private
    */
   _isEmailCorrect() {
-    return this._isElementCorrect('email', /[a-z]*(\.|.-)*[a-z]+@[a-z]+\.(ru|com|org)/i);
+    return this._isElementCorrect('email', /^[a-z]*(\.|.-)*[a-z]+@[a-z]+\.(ru|com|org)$/i);
   }
 
   /**
@@ -74,6 +74,6 @@ class ValidateForm {
    * @private
    */
   _isNameCorrect() {
-    return this._isElementCorrect('name', /[a-zA-Zа-яА-ЯёЁ]+/);
+    return this._isElementCorrect('name', /^[a-zA-Zа-яА-ЯёЁ]+$/);
   }
 }
