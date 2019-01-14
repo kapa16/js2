@@ -34,7 +34,7 @@ class AutoCompleteField{
     }
     const regExp = RegExp(inputText, 'i');
     let htmlText = `<div class="${this.settings.listParentClass}"><div class="${this.settings.listClass}">`;
-    const listItems = this._getListItems();
+    const listItems = this._getListItems(regExp);
     if (listItems.length === 0) {
       return;
     }
@@ -47,7 +47,7 @@ class AutoCompleteField{
       .on('click', () => this._removeList());
   }
 
-  _getListItems() {
+  _getListItems(regExp) {
     let result = '';
     for (const city of this.cities) {
       if (!regExp.test(city.value)) {
