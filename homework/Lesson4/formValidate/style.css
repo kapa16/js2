@@ -32,5 +32,8 @@
   background: lightgray;
   cursor: pointer;
 }
+.list__item_active {
+  background: lightgray;
+}
 
 /*# sourceMappingURL=style.css.map */

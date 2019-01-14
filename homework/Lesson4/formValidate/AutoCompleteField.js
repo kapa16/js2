@@ -1,21 +1,22 @@
 "use strict";
 
-class AutoCompleteField{
+class AutoCompleteField {
   constructor(inputFieldId, settings) {
-    this.inputFieldId = inputFieldId;
+    this.inputFieldIdSelector = inputFieldId;
     this.settings = {
       listParentClass: 'list__parent',
       listClass: 'list__wrapper',
-      listItem: 'list__item'
+      listItem: 'list__item',
+      listItemActive: 'list__item_active'
     };
     Object.assign(this.settings, settings);
     this.cities = [];
-    this._addEventHandler();
+    this._addInputEventHandler();
     this._getCitiesList();
   }
 
-  _addEventHandler() {
-    $(this.inputFieldId).on('keyup', evt => this._showList(evt))
+  _addInputEventHandler() {
+    $(this.inputFieldIdSelector).on('keyup', () => this._onKeyupInput())
   }
 
   _getCitiesList() {
@@ -25,9 +26,44 @@ class AutoCompleteField{
       .catch(ex => console.error('Error file load', ex));
   }
 
-  _showList(evt) {
-    this._removeList();
+  _onKeyupInput() {
+    if (event.keyCode === 40) {
+      this._moveList(1);
+    } else if (event.keyCode === 38) {
+      this._moveList(-1);
+    } else {
+      this._removeList();
+      this._showList(event);
+    }
+  }
 
+  _moveList(direction) {
+    const listItems = $(`.${this.settings.listItem}`);
+    const activeItem = $(`.${this.settings.listItemActive}`);
+    let indexSelectedEl = -1;
+    if (activeItem.length !== 0) {
+      indexSelectedEl = listItems.index(activeItem[0]);
+      activeItem.removeClass(this.settings.listItemActive);
+    }
+    let countElements = listItems.length;
+
+    let nextElement = indexSelectedEl + direction;
+    if (nextElement < 0) {
+      nextElement = countElements - 1;
+    } else if (nextElement >= countElements) {
+      nextElement = 0;
+    }
+
+    listItems.eq(nextElement).addClass(this.settings.listItemActive);
+
+    this._chooseSelectedItem();
+  }
+
+  _chooseSelectedItem() {
+    $(this.inputFieldIdSelector).val($(`.${this.settings.listItemActive}`).html());
+  }
+
+  _showList(evt) {
     const inputText = $(evt.currentTarget).val();
     if (inputText.length < 3) {
       return;
@@ -39,11 +75,16 @@ class AutoCompleteField{
       return;
     }
     htmlText += listItems + '</div></div>';
-    $(this.inputFieldId).after(htmlText);
+    $(this.inputFieldIdSelector).after(htmlText);
 
+    this._addListEventHandler();
+  }
+
+  _addListEventHandler() {
     $(`.${this.settings.listItem}`)
-      .on('click', () => this._chooseItem());
-    $('*').not(`.${this.settings.listItem}`)
+      .on('click', () => this._onItemClick());
+    $('*')
+      .not(`.${this.settings.listItem}`, this.inputFieldIdSelector)
       .on('click', () => this._removeList());
   }
 
@@ -53,13 +94,13 @@ class AutoCompleteField{
       if (!regExp.test(city.value)) {
         continue;
       }
-      result +=`<p class="${this.settings.listItem}">${city.value}</p>`;
+      result += `<p class="${this.settings.listItem}">${city.value}</p>`;
     }
     return result;
   }
 
-  _chooseItem() {
-    $(this.inputFieldId).val($(event.currentTarget).html());
+  _onItemClick() {
+    $(this.inputFieldIdSelector).val($(event.currentTarget).html());
     this._removeList();
   }
 
