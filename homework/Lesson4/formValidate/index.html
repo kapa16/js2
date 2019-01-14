@@ -59,7 +59,6 @@
     <div class="form-group col-md-4 mb-3">
         <label for="cityAuto">Город авто-комплит</label>
         <input type="text" class="form-control" name="city" id="cityAuto" placeholder="Введите город">
-        <!--<datalist id="citiesList"></datalist>-->
     </div>
 
     <div class="w-100"></div>
@@ -89,7 +88,7 @@
   document.forms.valid.addEventListener('submit', evt => validateForm.validateFormData(evt));
 
   const citiesList = new DropListControl('#city');
-  const citiesAuto = new AutoCompleteField('#cityAuto');
+  const citiesAuto = new AutoCompleteField('#cityAuto',{});
 
 </script>
 </body>

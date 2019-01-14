@@ -13,8 +13,24 @@
   cursor: pointer;
 }
 
-.citiesList {
+.list__parent {
+  position: relative;
+}
+.list__wrapper {
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 1px solid gray;
+  background: white;
+}
+.list__item {
+  margin: 0;
+  padding-left: 10px;
+}
+.list__item:hover {
+  background: lightgray;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
