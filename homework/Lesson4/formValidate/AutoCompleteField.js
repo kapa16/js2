@@ -1,24 +1,27 @@
 "use strict";
 
 class AutoCompleteField{
-  constructor(dropListId) {
-    this.dropListId = dropListId;
+  constructor(dataListId) {
+    this.dataListId = dataListId;
     this.cities = [];
+    this._addEventHandler();
     this._getCitiesList();
   }
 
+  _addEventHandler() {
+    $(this.dataListId).on('keypress', evt => this._showList($(this).tee()))
+  }
+
   _getCitiesList() {
-    fetch('cities.json')
+    this.cities = fetch('cities.json')
       .then(response => response.json())
-      .then(cities => this._fillDropList(cities))
       .catch(ex => console.error('Error file load', ex));
   }
 
-  _fillDropList(cities) {
-    this.cities = cities;
-    $(this.dropListId).append('<option disabled selected>Выберите город</option>');
-    for (const city of cities) {
-      $(this.dropListId).append(`<option value=${city.name}>${city.name}</option>`);
+  _showList(text) {
+    if (text.length < 3) {
+      return;
     }
+    
   }
 }
