@@ -1,13 +1,12 @@
 .tabs
   max-width: 800px
-  margin: 0 auto
-  display: flex
-  position: relative
-  &__wrapper
+  margin: 50px auto 0
+  &__controls
+    display: flex
   &__control
     position: relative
     z-index: 10
-    padding: 10px 20px
+    padding: 5px 20px
     margin-right: 1px
     border: 2px solid green
     border-bottom: none
@@ -15,23 +14,39 @@
     border-top-right-radius: 7px
     background: green
     color: white
-    &:hover
+    &:hover:not(.tabs__active)
       cursor: pointer
       background: rgba(0, 128, 0, 0.5)
   &__content
     display: none
-    position: absolute
+    position: relative
     border: 2px solid green
     border-top-right-radius: 7px
     border-bottom-right-radius: 7px
     border-bottom-left-radius: 7px
-    top: 38px
+    top: -2px
     left: 0
-    padding: 5px
-  &__active .tabs__content
-    display: block
-  &__active .tabs__control
+    padding: 10px
+  &__active
     background: white
-    color: green
+    color: black
 
+.vertical
+  flex-direction: column
+
+.horizontal
+  display: flex
+
+  .tabs
+    &__control
+      border: 2px solid green
+      border-right: none
+      border-top-right-radius: 0px
+      border-top-left-radius: 7px
+      border-bottom-left-radius: 7px
+      margin-right: 0px
+      margin-bottom: 1px
+    &__content
+      top: 0px
+      left: -2px
 

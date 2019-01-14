@@ -7,10 +7,16 @@
 </head>
 <body>
 
-<div class="tabs">
-    <div class="tabs__wrapper tabs__active">
-        <div class="tabs__control">Tab1</div>
-        <div class="tabs__content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur cumque
+<div class="tabs" id="tabs1">
+    <div class="tabs__controls">
+        <div class="tabs__control tabs__active">Tab1</div>
+        <div class="tabs__control">Tab2</div>
+        <div class="tabs__control">Tab3</div>
+        <div class="tabs__control">Tab4</div>
+    </div>
+    <div class="tabs__contents">
+        <div class="tabs__content tabs__active">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
+            cumque
             deserunt dolor earum facere iusto minima nobis pariatur porro, quae quam veritatis! A animi eos excepturi
             fugit itaque neque nesciunt numquam quod sit? Ab accusantium amet dolore doloremque dolorum eius enim ex
             incidunt labore libero magni maxime optio porro praesentium quasi, qui quo quos ratione, saepe sed sequi
@@ -18,9 +24,6 @@
             exercitationem fuga fugiat fugit harum illum iste magnam magni maxime molestias necessitatibus nihil nobis
             odit pariatur perferendis quaerat quasi, qui quibusdam, sed sequi sunt tempora unde vel voluptate!
         </div>
-    </div>
-    <div class="tabs__wrapper">
-        <div class="tabs__control">Tab2</div>
         <div class="tabs__content">Architecto consectetur consequatur natus optio quaerat temporibus tenetur veritatis.
             Ab animi asperiores, blanditiis dicta dolorem doloribus earum facilis fugit hic ipsam libero maxime minima
             nesciunt praesentium, quia quis sapiente sed suscipit vel vero? Ab at dolorem, doloribus error illo
@@ -30,9 +33,6 @@
             tenetur totam ullam. Accusamus ducimus facilis labore modi numquam, obcaecati odio pariatur provident
             quibusdam quidem rem saepe velit vero voluptatum!
         </div>
-    </div>
-    <div class="tabs__wrapper">
-        <div class="tabs__control">Tab3</div>
         <div class="tabs__content">Aperiam architecto aspernatur at autem beatae consequatur corporis, culpa cum,
             debitis delectus distinctio dolorum eligendi est eum facere fuga harum inventore ipsam ipsum itaque
             laboriosam magnam minima modi nihil non nostrum obcaecati quas quidem quisquam quod rerum saepe sapiente sit
@@ -45,9 +45,59 @@
             <br>Aliquam consequatur et illum necessitatibus tempore ullam
             vero! Autem consequatur cupiditate dolorem nesciunt possimus quas quod repellat?
         </div>
+        <div class="tabs__content">A aliquid animi, beatae consectetur cum dolore exercitationem facere facilis fugit in
+            iste itaque maxime neque nulla odit omnis perferendis quo recusandae sed similique sit vel, veniam
+            voluptatibus. Dolore explicabo ipsa minima odio perspiciatis repellendus totam velit. Accusantium aliquam
+            amet architecto atque debitis deleniti dolorum eius, eligendi excepturi hic in incidunt ipsam laboriosam
+            libero magnam molestias nam necessitatibus nemo nesciunt nisi odit officia optio possimus quas qui ratione
+            sapiente sequi suscipit, voluptate voluptates!
+            <br>
+            <br>
+            A accusamus adipisci animi aperiam consequatur delectus, enim
+            et exercitationem, facilis fugiat incidunt ipsam laboriosam laudantium magnam maxime minus necessitatibus
+            numquam odit officia perferendis possimus quae veniam!
+        </div>
     </div>
-    <div class="tabs__wrapper">
+</div>
+
+<div class="tabs horizontal" id="tabs2">
+    <div class="tabs__controls vertical">
+        <div class="tabs__control tabs__active">Tab1</div>
+        <div class="tabs__control">Tab2</div>
+        <div class="tabs__control">Tab3</div>
         <div class="tabs__control">Tab4</div>
+    </div>
+    <div class="tabs__contents">
+        <div class="tabs__content tabs__active">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
+            cumque
+            deserunt dolor earum facere iusto minima nobis pariatur porro, quae quam veritatis! A animi eos excepturi
+            fugit itaque neque nesciunt numquam quod sit? Ab accusantium amet dolore doloremque dolorum eius enim ex
+            incidunt labore libero magni maxime optio porro praesentium quasi, qui quo quos ratione, saepe sed sequi
+            veritatis, voluptates. A adipisci amet at atque aut consequatur consequuntur dolore doloribus eos ex
+            exercitationem fuga fugiat fugit harum illum iste magnam magni maxime molestias necessitatibus nihil nobis
+            odit pariatur perferendis quaerat quasi, qui quibusdam, sed sequi sunt tempora unde vel voluptate!
+        </div>
+        <div class="tabs__content">Architecto consectetur consequatur natus optio quaerat temporibus tenetur veritatis.
+            Ab animi asperiores, blanditiis dicta dolorem doloribus earum facilis fugit hic ipsam libero maxime minima
+            nesciunt praesentium, quia quis sapiente sed suscipit vel vero? Ab at dolorem, doloribus error illo
+            inventore labore laborum molestias mollitia nihil porro praesentium quibusdam quis quod repellat sed sit
+            velit voluptates? Delectus distinctio enim eos fugiat labore, quae quasi quibusdam recusandae. Architecto
+            corporis, dolore doloremque illum iusto magni nam quidem ratione rem, repellat repellendus saepe tempore
+            tenetur totam ullam. Accusamus ducimus facilis labore modi numquam, obcaecati odio pariatur provident
+            quibusdam quidem rem saepe velit vero voluptatum!
+        </div>
+        <div class="tabs__content">Aperiam architecto aspernatur at autem beatae consequatur corporis, culpa cum,
+            debitis delectus distinctio dolorum eligendi est eum facere fuga harum inventore ipsam ipsum itaque
+            laboriosam magnam minima modi nihil non nostrum obcaecati quas quidem quisquam quod rerum saepe sapiente sit
+            tempora veritatis voluptate voluptatem.
+            <br>Aliquam cumque ducimus impedit necessitatibus, nesciunt quis
+            sapiente sit.
+            <br>Accusantium adipisci aliquid beatae blanditiis consequuntur cum deserunt dolores ea earum
+            eligendi eos incidunt inventore ipsum iste libero molestias necessitatibus obcaecati, officia quibusdam quod
+            repellendus sint sit sunt, veniam voluptates?
+            <br>Aliquam consequatur et illum necessitatibus tempore ullam
+            vero! Autem consequatur cupiditate dolorem nesciunt possimus quas quod repellat?
+        </div>
         <div class="tabs__content">A aliquid animi, beatae consectetur cum dolore exercitationem facere facilis fugit in
             iste itaque maxime neque nulla odit omnis perferendis quo recusandae sed similique sit vel, veniam
             voluptatibus. Dolore explicabo ipsa minima odio perspiciatis repellendus totam velit. Accusantium aliquam
@@ -66,7 +116,13 @@
 <script src="jquery-3.3.1.min.js"></script>
 <script src="tabsControl.js"></script>
 <script>
-    const tabsControl = new TabsControl({});
+  "use strict";
+
+  const block1 = document.querySelector('#tabs1');
+  const tabsControl1 = new TabsControl(block1, {});
+
+  const block2 = document.querySelector('#tabs2');
+  const tabsControl2 = new TabsControl(block2, {});
 
 </script>
 </body>
