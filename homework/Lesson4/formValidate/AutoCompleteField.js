@@ -1,6 +1,6 @@
 "use strict";
 
-class DropListControl{
+class AutoCompleteField{
   constructor(dropListId) {
     this.dropListId = dropListId;
     this.cities = [];
