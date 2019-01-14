@@ -1,0 +1,16 @@
+.drop-list {
+  display: flex;
+  position: relative;
+}
+.drop-list__btn {
+  line-height: 220%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 10px;
+}
+.drop-list__btn:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=style.css.map */
