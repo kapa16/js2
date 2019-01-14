@@ -1,8 +1,9 @@
 "use strict";
 
 class AutoCompleteField{
-  constructor(dataListId) {
+  constructor(dataListId, listClass) {
     this.dataListId = dataListId;
+    this.listClass = listClass;
     this.cities = [];
     this._addEventHandler();
     this._getCitiesList();
@@ -22,6 +23,6 @@ class AutoCompleteField{
     if (text.length < 3) {
       return;
     }
-    
+    $(this.dataListId).append()
   }
 }
