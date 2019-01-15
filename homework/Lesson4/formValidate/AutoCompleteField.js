@@ -1,7 +1,7 @@
 "use strict";
 
 class AutoCompleteField {
-  constructor(inputFieldId, fileNameList, settings) {
+  constructor(inputFieldId, fileNameList, settings = {}) {
     this.inputFieldIdSelector = inputFieldId;
     this.fileNameList = fileNameList;
     this.settings = {
