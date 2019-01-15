@@ -1,8 +1,9 @@
 "use strict";
 
 class AutoCompleteField {
-  constructor(inputFieldId, settings) {
+  constructor(inputFieldId, fileNameList, settings) {
     this.inputFieldIdSelector = inputFieldId;
+    this.fileNameList = fileNameList;
     this.settings = {
       listParentClass: 'list__parent',
       listClass: 'list__wrapper',
@@ -24,7 +25,7 @@ class AutoCompleteField {
   }
 
   _getCitiesList() {
-    fetch('cities.json')
+    fetch(this.fileNameList)
       .then(response => response.json())
       .then(result => this.cities = result)
       .catch(ex => console.error('Error file load', ex));
