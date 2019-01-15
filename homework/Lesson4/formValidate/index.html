@@ -89,7 +89,7 @@
     document.forms.valid.addEventListener('submit', evt => validateForm.validateFormData(evt));
 
     const citiesList = new DropListControl('#city');
-    const citiesAuto = new AutoCompleteField('#cityAuto', 'cities.json', {});
+    const citiesAuto = new AutoCompleteField('#cityAuto', 'cities.json');
   });
 
 
