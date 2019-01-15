@@ -84,11 +84,14 @@
 <script>
   "use strict";
 
-  const validateForm = new ValidateForm('valid');
-  document.forms.valid.addEventListener('submit', evt => validateForm.validateFormData(evt));
+  $(document).ready(() => {
+    const validateForm = new ValidateForm('valid');
+    document.forms.valid.addEventListener('submit', evt => validateForm.validateFormData(evt));
 
-  const citiesList = new DropListControl('#city');
-  const citiesAuto = new AutoCompleteField('#cityAuto',{});
+    const citiesList = new DropListControl('#city');
+    const citiesAuto = new AutoCompleteField('#cityAuto',{});
+  });
+
 
 </script>
 </body>

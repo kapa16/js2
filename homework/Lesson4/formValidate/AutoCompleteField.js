@@ -6,8 +6,12 @@ class AutoCompleteField {
     this.settings = {
       listParentClass: 'list__parent',
       listClass: 'list__wrapper',
-      listItem: 'list__item',
-      listItemActive: 'list__item_active'
+      listItemClass: 'list__item',
+      listItemActiveClass: 'list__item_active',
+      listParentSelector: '.list__parent',
+      listSelector: '.list__wrapper',
+      listItemSelector: '.list__item',
+      listItemActiveSelector: '.list__item_active'
     };
     Object.assign(this.settings, settings);
     this.cities = [];
@@ -38,29 +42,26 @@ class AutoCompleteField {
   }
 
   _moveList(direction) {
-    const listItems = $(`.${this.settings.listItem}`);
-    const activeItem = $(`.${this.settings.listItemActive}`);
+    const $listItems = $(this.settings.listItemSelector);
+    const $activeItem = $(this.settings.listItemActiveSelector);
+    const countItemsElements = $listItems.length;
+
     let indexSelectedEl = -1;
-    if (activeItem.length !== 0) {
-      indexSelectedEl = listItems.index(activeItem[0]);
-      activeItem.removeClass(this.settings.listItemActive);
+    if ($activeItem.length !== 0) {
+      indexSelectedEl = $listItems.index($activeItem[0]);
+      $activeItem.removeClass(this.settings.listItemActiveClass);
     }
-    let countElements = listItems.length;
 
     let nextElement = indexSelectedEl + direction;
     if (nextElement < 0) {
-      nextElement = countElements - 1;
-    } else if (nextElement >= countElements) {
+      nextElement = countItemsElements - 1;
+    } else if (nextElement >= countItemsElements) {
       nextElement = 0;
     }
 
-    listItems.eq(nextElement).addClass(this.settings.listItemActive);
+    $listItems.eq(nextElement).addClass(this.settings.listItemActiveClass);
 
-    this._chooseSelectedItem();
-  }
-
-  _chooseSelectedItem() {
-    $(this.inputFieldIdSelector).val($(`.${this.settings.listItemActive}`).html());
+    this._setInputValue($(this.settings.listItemActiveSelector));
   }
 
   _showList(evt) {
@@ -69,23 +70,16 @@ class AutoCompleteField {
       return;
     }
     const regExp = RegExp(inputText, 'i');
+
     let htmlText = `<div class="${this.settings.listParentClass}"><div class="${this.settings.listClass}">`;
-    const listItems = this._getListItems(regExp);
-    if (listItems.length === 0) {
+    const htmlListItems = this._getListItems(regExp);
+    if (htmlListItems.length === 0) {
       return;
     }
-    htmlText += listItems + '</div></div>';
+    htmlText += htmlListItems + '</div></div>';
     $(this.inputFieldIdSelector).after(htmlText);
 
     this._addListEventHandler();
-  }
-
-  _addListEventHandler() {
-    $(`.${this.settings.listItem}`)
-      .on('click', () => this._onItemClick());
-    $('*')
-      .not(`.${this.settings.listItem}`, this.inputFieldIdSelector)
-      .on('click', () => this._removeList());
   }
 
   _getListItems(regExp) {
@@ -94,17 +88,29 @@ class AutoCompleteField {
       if (!regExp.test(city.value)) {
         continue;
       }
-      result += `<p class="${this.settings.listItem}">${city.value}</p>`;
+      result += `<p class="${this.settings.listItemClass}">${city.value}</p>`;
     }
     return result;
   }
 
+  _addListEventHandler() {
+    $(this.settings.listItemSelector)
+      .on('click', () => this._onItemClick());
+    $('*')
+      .not(this.settings.listItemSelector, this.inputFieldIdSelector)
+      .on('click', () => this._removeList());
+  }
+
   _onItemClick() {
-    $(this.inputFieldIdSelector).val($(event.currentTarget).html());
+    this._setInputValue($(event.currentTarget));
     this._removeList();
   }
 
+  _setInputValue($itemElement) {
+    $(this.inputFieldIdSelector).val($itemElement.html());
+  }
+
   _removeList() {
-    $(`.${this.settings.listParentClass}`).remove();
+    $(this.settings.listParentSelector).remove();
   }
 }
