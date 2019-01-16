@@ -1,5 +1,5 @@
 class CommentsControl {
-  constructor(source, container = '#comments', form = '#comment-form') {
+  constructor(source, container = '#comments-container', form = '#comment-form') {
     this.source = source;
     this.container = container;
     this.form = form;
@@ -11,7 +11,6 @@ class CommentsControl {
 
   _init() {
     this._renderForm();
-    this._render();
     fetch(this.source)
       .then(result => result.json())
       .then(data => {
@@ -44,40 +43,57 @@ class CommentsControl {
       .submit(evt => this._onFormSubmit(evt));
   }
 
-  _render() {
-    $(this.container).append('<h3>Отзывы</h3>');
-  }
-
   _renderComment(comment) {
     const $commentWrap = $(`<div class="comment" data-id="${comment.id}"></div>`);
+    const $userName = $(`<p class="comment-user">${comment.author}</p>`);
+    const $top = $('<div class="comment-top"></div>');
+    $top.append($userName);
+
     if (comment.approved) {
       $commentWrap.addClass('approved');
     } else {
-      const $approveBtn = $('<button>Одобрить</button>');
+      const $approveBtn = $(`<button class="btn" data-id="${comment.id}">Одобрить</button>`);
       $approveBtn.click(evt => this._onApproveClick(evt));
-      $commentWrap.append($approveBtn);
+      $top.append($approveBtn);
     }
-    const $userName = $(`<p class="comment-user">${comment.author}</p>`);
+    const $deleteBtn = $(`<button class="btn" data-id="${comment.id}">X</button>`);
+    $deleteBtn.click(evt => this._onDeleteClick(evt));
+    $top.append($deleteBtn);
+
     const $commentText = $(`<p class="comment-text">${comment.text}</p>`);
 
     $commentWrap
-      .append($userName)
+      .append($top)
       .append($commentText)
-      .appendTo($(this.container));
+      .prependTo($(this.container));
+  }
+
+  _getCommentWrap(targetEl) {
+    return $(targetEl)
+      .closest('.comment');
+  }
+
+  _findComment(id) {
+    for (const comment of this.comments) {
+      if (comment.id === +id) {
+        return comment;
+      }
+    }
   }
 
   _onApproveClick(evt) {
-    const commentId = $(evt.target)
-      .closest('.comment')
-      .addClass('approved')
-      .data('id');
-    for (const comment of this.comments) {
-      if (comment.id === commentId) {
-        comment.approved = true;
-        break;
-      }
-    }
+    this._getCommentWrap(evt.target).addClass('approved')
+    const commentId = evt.target.dataset.id;
+
+    this._findComment(commentId).approved = true;
+
     $(evt.target).remove();
+  }
+
+  _onDeleteClick(evt) {
+    const comment = this._findComment(evt.target.dataset.id);
+    this.comments.splice(this.comments.indexOf(comment), 1);
+    this._getCommentWrap(evt.target).remove();
   }
 
   _getLastCommentId() {
