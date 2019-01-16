@@ -1,0 +1,32 @@
+.drop-list
+  display: flex
+  position: relative
+
+  &__btn
+    line-height: 220%
+    position: absolute
+    top: 0
+    right: 0
+    padding: 0 10px
+    &:hover
+      cursor: pointer
+
+.list
+  &__parent
+    position: relative
+  &__wrapper
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    border: 1px solid gray
+    background: white
+  &__item
+    margin: 0
+    padding-left: 10px
+    &:hover
+      background: lightgray
+      cursor: pointer
+    &_active
+      background: lightgray
+
