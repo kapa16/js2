@@ -5,13 +5,21 @@
     <title>Title</title>
     <style>
         #cart{
-            width: 300px;
+            width: 400px;
         }
         .cart-item{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 2fr 2fr 2fr 1fr;
             grid-template-rows: 1fr;
             padding: 10px 0;
+        }
+        .quantity-wrap{
+            display: flex;
+        }
+        .btn-quantity{
+            width: 20px;
+            padding: 0;
+            margin: 0 5px;
         }
         .cart-item:not(:first-child){
             border-top: 1px solid black;
@@ -46,6 +54,7 @@
             border-radius: 5px;
             overflow: hidden;
         }
+
     </style>
 </head>
 <body>
